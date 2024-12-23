@@ -1,0 +1,31 @@
+<div class="question-item">
+    <div class="question-details" [ngClass]="{ qcm: question.type === 'QCM', qrl: question.type === 'QRL' }">
+        <div class="question-info">
+            <span>{{ index + 1 }}</span>
+        </div>
+        <div class="question-info">
+            <span class="label">Type :</span>
+            <span class="value">{{ question.type }}</span>
+        </div>
+        <div class="question-info">
+            <span class="label">Question :</span>
+            <span class="value">{{ question.text }}</span>
+        </div>
+        <div class="question-info">
+            <span class="label">Points :</span>
+            <span class="value">{{ question.points }}</span>
+        </div>
+        <div class="question-info" *ngIf="displayDate">
+            <span class="label">Dernière modification :</span>
+            <span class="value">{{ question.lastModification | date }}</span>
+        </div>
+    </div>
+    <div>
+        <button class="action-buttons" type="button" mat-icon-button (click)="openConfirmationDialog('edit')">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button class="action-buttons" type="button" mat-icon-button (click)="openConfirmationDialog('delete')">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</div>

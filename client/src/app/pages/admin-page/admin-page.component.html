@@ -1,0 +1,50 @@
+<div class="admin-page-container">
+    <div class="grid-title">
+        <h2 class="title">Administrer des jeux / Jeux</h2>
+    </div>
+    <div class="grid-container">
+        <div class="quiz-list">
+            <input type="file" accept=".json" (change)="importQuiz($event)" />
+            <div class="quiz-list-title">Liste de quiz</div>
+            <div *ngFor="let quiz of quizzes | async; let i = index">
+                <app-quiz-item [quiz]="quiz" [index]="i" (action)="handle($event)"></app-quiz-item>
+            </div>
+            <button class="admin-buttons" (click)="goToQuizPage()">Créer un quiz</button>
+        </div>
+        <div class="app-question-bank">
+            <app-question-bank></app-question-bank>
+        </div>
+    </div>
+    <div class="game-list">
+        <div class="game-list-title">Liste des parties complétées</div>
+        <button class="remove-button" type="button" (click)="confirmDeleteAllGames()">supprimer tout</button>
+        <button class="admin-buttons" type="button" (click)="sortByName()">trier par nom</button>
+        <button class="admin-buttons" type="button" (click)="sortByDate()">trier par date</button>
+        <div *ngFor="let game of games | async; let i = index">
+            <div class="game-item">
+                <div class="game-details">
+                    <div class="game-info">
+                        <span class="label">Nom :</span>
+                        <span class="value">{{ game.name }}</span>
+                    </div>
+                    <div class="game-info">
+                        <span class="label">Date :</span>
+                        <span class="value">{{ game.date | date: 'medium' }}</span>
+                    </div>
+                    <div class="game-info">
+                        <span class="label">Nb de joueurs :</span>
+                        <span class="value">{{ game.nPlayers }}</span>
+                    </div>
+                    <div class="game-info">
+                        <span class="label">Meilleur score :</span>
+                        <span class="value">{{ game.bestScore }}</span>
+                    </div>
+                </div>
+                <button class="delete-button" type="button" (click)="confirmDeleteGame(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button class="return-button" routerLink="/home">Retour</button>
+</div>

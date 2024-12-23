@@ -1,0 +1,87 @@
+/* Structure de base pour le chatbox */
+
+app-question,
+app-game-count-down {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    padding: 20px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    border: 2px solid #333333;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: changeBackgroundColor 20s linear infinite alternate; /* Add animation */
+}
+
+app-question:before,
+app-question:after,
+app-game-count-down:before,
+app-game-count-down:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #333, #333);
+}
+
+app-question:before,
+app-game-count-down:before {
+    top: 0;
+}
+
+app-question:after,
+app-game-count-down:after {
+    bottom: 0;
+}
+
+button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: #d9e2eb;
+    }
+    20% {
+        background-color: #87ceeb;
+    }
+    40% {
+        background-color: #b0c4de;
+    }
+    60% {
+        background-color: #e6e6e6;
+    }
+    80% {
+        background-color: #b78acb;
+    }
+    90% {
+        background-color: #9361b0;
+    }
+    100% {
+        background-color: #c13b7c;
+    }
+}
+
+#leave-button {
+    background-color: grey;
+}
+
+#leave-button:hover {
+    background-color: darkgrey;
+}

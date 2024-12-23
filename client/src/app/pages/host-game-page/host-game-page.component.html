@@ -1,0 +1,101 @@
+<body *ngIf="game">
+    <app-game-count-down *ngIf="isCountingDown" (countdownEnded)="stopCountDown()" [gameName]="game.quiz.title"></app-game-count-down>
+    <button id="leave-button" (click)="openConfirmationDialog()">Quitter</button>
+    <div class="container" *ngIf="!isCountingDown">
+        <div class="organizer-container">
+            <div class="question-display" *ngIf="getCurrentQuestion() as question">
+                <div *ngIf="!getQuestionEnded()">
+                    <h1>{{ question.text }}</h1>
+                    <p>Points: + {{ question.points }}</p>
+                </div>
+            </div>
+            <div class="question-display">
+                <div *ngIf="getQuestionEnded()">
+                    <h1>Question terminée</h1>
+                    <button class="next-button" *ngIf="getCurrentQuestion()" (click)="nextQuestion()">Prochaine question</button>
+                    <button class="next-button" *ngIf="!getCurrentQuestion()" (click)="showEndGameResult()">Terminer la partie</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown">
+            <mat-card class="timer-card">
+                <mat-card-content>
+                    <mat-icon class="timer-icon">timer</mat-icon>
+                    <p class="timer-text">{{ getTime() }}</p>
+                </mat-card-content>
+                <div class="timer-container">
+                    <button class="button-timer" [ngClass]="{ paused: isTimerPaused }" (click)="pauseTimer()" [disabled]="getQuestionEnded()">
+                        <mat-icon *ngIf="isTimerPaused">play_arrow</mat-icon>
+                        <mat-icon *ngIf="!isTimerPaused">pause</mat-icon>
+                    </button>
+                    <button class="button-panic" (click)="startPanicMode()">Panic Mode</button>
+                </div>
+            </mat-card>
+            <div class="players-container">
+                <section class="playerCardContainer">
+                    <h1>Liste de joueurs</h1>
+                    <button class="sort-button" (click)="sortBy('name')">
+                        Trier par nom
+                        <span
+                            class="sort-icon"
+                            [ngClass]="{ 'arrow-up': sort === 'name' && order === 'asc', 'arrow-down': sort === 'name' && order === 'desc' }"
+                        ></span>
+                    </button>
+                    <button class="sort-button" (click)="sortBy('score')">
+                        Trier par points
+                        <span
+                            class="sort-icon"
+                            [ngClass]="{ 'arrow-up': sort === 'score' && order === 'desc', 'arrow-down': sort === 'score' && order === 'asc' }"
+                        ></span>
+                    </button>
+                    <button class="sort-button" (click)="sortBy('color')">
+                        Trier par couleur
+                        <span
+                            class="sort-icon"
+                            [ngClass]="{ 'arrow-up': sort === 'color' && order === 'asc', 'arrow-down': sort === 'color' && order === 'desc' }"
+                        ></span>
+                    </button>
+
+                    <div class="player-container">
+                        <div *ngFor="let player of getPlayers()" class="player">
+                            <h1 [style.color]="getColor(player)" [style.text-decoration]="player.hasLeft ? 'line-through' : ''">{{ player.name }}</h1>
+                            <h1>{{ player.score }}</h1>
+                            <button *ngIf="!player.hasLeft" (click)="mutePlayer(player.name)">{{ player.muted ? 'Unmute' : 'Mute' }}</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="getQrlEnded()" class="evaluation-section">
+        <h1 class="section-title">Évaluation des réponses</h1>
+        <div class="player-info">
+            <h2>Question : {{ getPreviousQuestion()?.text }}</h2>
+            <h2>Joueur : {{ getCurrentPlayer().name }}</h2>
+            <p>Réponse : {{ getCurrentPlayer().questions[getCurrentPlayer().questions.length - 1].qrlAnswer }}</p>
+        </div>
+        <div class="evaluation-options">
+            <div class="option">
+                <input type="radio" name="multiplier" id="option0" value="0" [(ngModel)]="selectedMultiplier" />
+                <label for="option0">0 %</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="multiplier" id="option50" value="0.5" [(ngModel)]="selectedMultiplier" />
+                <label for="option50">50 %</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="multiplier" id="option100" value="1" [(ngModel)]="selectedMultiplier" />
+                <label for="option100">100 %</label>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <button class="next-button" *ngIf="!isTheLastPlayer()" (click)="nextPlayer()">Prochaine question</button>
+            <button class="finish-button" *ngIf="isTheLastPlayer()" (click)="sendEvaluationResults()">Envoyer la correction</button>
+        </div>
+    </div>
+    <div class="app-histogram" *ngIf="histogramData">
+        <app-histogram [chartData]="histogramData"></app-histogram>
+    </div>
+    <app-chatbox [name]="'Organisateur'"></app-chatbox>
+</body>

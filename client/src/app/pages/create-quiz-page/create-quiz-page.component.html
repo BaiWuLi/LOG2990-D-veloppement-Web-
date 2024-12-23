@@ -1,0 +1,41 @@
+<form (ngSubmit)="submitQuiz()">
+    <div class="left-content">
+        <div class="quiz-settings">
+            <div class="title-box">
+                <label>Titre:</label>
+                <input type="text" [(ngModel)]="quiz.title" name="quiz-title" />
+            </div>
+
+            <div class="description-box">
+                <label>Description:</label>
+                <textarea name="quiz-description" [(ngModel)]="quiz.description"></textarea>
+            </div>
+
+            <div class="time-box">
+                <label>Temps (10-60 seconds):</label>
+                <input name="quiz-duration" type="number" [(ngModel)]="quiz.duration" min="10" max="60" />
+            </div>
+        </div>
+
+        <div
+            id="question-list"
+            cdkDropList
+            [cdkDropListData]="quiz.questions"
+            (cdkDropListDropped)="drop($event)"
+            cdkDropListConnectedTo="question-bank"
+        >
+            Questions (drag and drop pour réordonner ou transférer vers la banque de questions)
+            <div cdkDrag *ngFor="let question of quiz.questions; let i = index" class="question-item">
+                <app-question-item [question]="question" [index]="i" (action)="handle($event)"></app-question-item>
+            </div>
+        </div>
+        <button type="button" id="addButton" class="create-button" (click)="openQuestionForm()">Créer une question</button>
+        <div class="button-container">
+            <button type="button" class="submit-button" (click)="submitQuiz()">Sauvegarder</button>
+            <button type="button" class="cancel-button" (click)="close()">Retour</button>
+        </div>
+    </div>
+    <div class="right-content">
+        <app-question-bank></app-question-bank>
+    </div>
+</form>

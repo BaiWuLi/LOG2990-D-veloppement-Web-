@@ -1,0 +1,105 @@
+$primary-color: #007bff;
+$secondary-color: #ccc;
+$background-color: #f0f0f0;
+$text-color: #212529;
+
+.home-page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: $background-color;
+    padding: 40px;
+}
+
+.grid-title {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.title {
+    margin: 0;
+}
+
+.container {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: $background-color;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.games-list {
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.game-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: $secondary-color;
+    color: $text-color;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-button:hover {
+    background-color: darken($secondary-color, 10%);
+}
+
+p {
+    margin-top: 20px;
+    color: #333;
+}
+
+.button-navigation {
+    position: absolute;
+    bottom: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+.return-button,
+.testGame,
+.startGame {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}
+
+.return-button {
+    background-color: grey;
+
+    &:hover {
+        background-color: darkgrey;
+    }
+}

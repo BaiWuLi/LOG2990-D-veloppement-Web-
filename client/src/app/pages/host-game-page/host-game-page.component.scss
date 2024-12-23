@@ -1,0 +1,242 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: linear-gradient(to right, #19547b, #3498db);
+}
+
+.app-header {
+    background-color: #66b3e0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.container {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.organizer-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: #408ebb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.data-container,
+.histogram-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.app-histogram {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.question-display {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.timer-card,
+.question-display h1,
+.question-display p {
+    background: linear-gradient(to left, #19547b, #3498db);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.countdown,
+.players-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.player-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.player h1 {
+    margin-right: 10px;
+}
+
+.player button {
+    margin-left: auto;
+}
+
+.timer-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.evaluation {
+    border-color: black;
+}
+
+#leave-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: grey;
+    right: 20px;
+    cursor: pointer;
+}
+
+#leave-button:hover {
+    background-color: darkgrey;
+}
+
+.evaluation-section {
+    padding: 20px;
+    background-color: #daebef;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    color: black;
+}
+
+.section-title {
+    color: black;
+    font-style: underline;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.player-info {
+    margin-bottom: 20px;
+}
+
+.player-info h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.evaluation-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: inline-block;
+}
+
+.option input[type='radio'] {
+    display: none;
+}
+
+.option label {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid #00ff08;
+    border-radius: 5px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.option input[type='radio']:checked + label {
+    background-color: #00ff08;
+    color: #fff;
+}
+
+.buttons-container {
+    text-align: center;
+}
+
+.next-button,
+.finish-button {
+    padding: 12px 24px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.next-button:hover,
+.finish-button:hover {
+    background-color: #0056b3;
+}
+
+.paused {
+    background-color: #ccc;
+}
+
+.sort-button:hover,
+.button-timer:hover,
+.button-panic:hover {
+    background-color: #0056b3;
+}
+
+.sort-button {
+    position: relative; /* Add relative positioning to the button */
+}
+
+.sort-icon {
+    position: absolute;
+    top: 50%;
+    right: 8px; /* Adjust as needed */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.arrow-up {
+    border-width: 0 5px 5px 5px;
+    border-color: transparent transparent #000 transparent; /* Black color for arrow up */
+}
+
+.arrow-down {
+    border-width: 5px 5px 0 5px;
+    border-color: #000 transparent transparent transparent; /* Black color for arrow down */
+}

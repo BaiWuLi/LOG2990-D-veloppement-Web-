@@ -1,0 +1,63 @@
+<div class="time-container">
+    <div class="time-content">Temps restant: {{ getTime() }}</div>
+</div>
+<div *ngIf="isWaitingForEvaluation()">
+    <p>En attente de l'évaluation de la réponse...</p>
+</div>
+<div *ngIf="playerService.player && getQuestionData() as questionData">
+    <div *ngIf="getPlayer() as player" class="player-container">
+        <h2>{{ questionData.text }}</h2>
+        <p class="question-value">Valeur de la question: {{ questionData.points }} points</p>
+
+        <div *ngIf="questionData.type === 'QCM'" class="question-container" (keyup)="handleKeyUp($event)">
+            <div
+                class="choice-container"
+                *ngFor="let choice of playerService.player.questions[playerService.player.questions.length - 1].choices; let i = index"
+            >
+                <label class="choice-label">
+                    <input
+                        [disabled]="this.playerService.answerConfirmed"
+                        type="checkbox"
+                        class="choice-input"
+                        [(ngModel)]="choice.isCorrect"
+                        (ngModelChange)="updatePlayer()"
+                    />
+                    {{ i + 1 }}) {{ choice.text }}
+                </label>
+            </div>
+        </div>
+
+        <div *ngIf="questionData.type === 'QRL'" class="question-container">
+            <textarea
+                [disabled]="playerService.answerConfirmed"
+                class="answer-textarea"
+                placeholder="Tapez votre réponse ici..."
+                maxlength="200"
+                [(ngModel)]="player.questions[player.questions.length - 1].qrlAnswer"
+                (ngModelChange)="updatePlayer()"
+            >
+            </textarea>
+            <div class="char-limit">{{ getLength() }} caractères restants</div>
+        </div>
+
+        <div class="score-display">Points cumulés: {{ player.score }}</div>
+
+        <div class="correct-answers-container">
+            <div *ngFor="let correctAnswer of playerService.answer; let i = index">
+                <p>Réponse(s): {{ correctAnswer.text }}</p>
+            </div>
+        </div>
+
+        <div *ngIf="playerService.isCorrect" class="correct-answer-feedback">
+            <p>Bonne réponse!</p>
+        </div>
+
+        <div *ngIf="playerService.qrlCorrect >= 0">Note : {{ playerService.qrlCorrect * 100 }}%</div>
+
+        <div class="button-container">
+            <button class="button-confirm" [disabled]="this.playerService.answerConfirmed" (click)="playerService.confirmPlayerAnswer()">
+                Confirmer
+            </button>
+        </div>
+    </div>
+</div>

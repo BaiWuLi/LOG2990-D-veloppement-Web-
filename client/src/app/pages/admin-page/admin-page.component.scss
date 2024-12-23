@@ -1,0 +1,183 @@
+.admin-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.grid-title {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.title {
+    margin: 0;
+}
+
+.grid-container {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 40px;
+}
+
+.quiz-list,
+.app-question-bank,
+.game-list {
+    border: 1px solid black;
+    padding: 10px;
+    flex: 1;
+    background-color: white;
+    margin: 0 10px;
+    margin-top: 50px;
+}
+
+.quiz-list {
+    margin-right: 10px;
+}
+
+.app-question-bank {
+    margin-left: 10px;
+}
+
+.game-list {
+    border: 1px solid black;
+    padding: 20px;
+    flex: 1;
+    background-color: white;
+    margin: 20px 10px 0;
+}
+
+.quiz-list > div,
+.app-question-bank > div,
+.game-list > div {
+    margin-top: 10px;
+}
+
+.admin-page-container input[type='file'] {
+    display: none;
+}
+
+.admin-page-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.admin-page-container .admin-buttons {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.admin-page-container .admin-buttons:hover {
+    background-color: #0056b3;
+}
+
+.remove-button {
+    padding: 10px 20px;
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.remove-button:hover {
+    background-color: #c62828;
+}
+
+.quiz-list-title,
+.question-bank-title,
+.game-list-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.admin-page-container .return-button {
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    background-color: grey !important;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.admin-page-container .return-button:hover {
+    background-color: darkgrey !important;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.game-item span {
+    margin-right: 10px;
+}
+
+.delete-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background-color: transparent !important;
+    cursor: pointer;
+    color: #333 !important;
+    padding: 0;
+}
+
+.delete-button mat-icon {
+    font-size: 20px;
+    color: #333 !important;
+}
+
+.delete-button:hover mat-icon {
+    color: #007bff !important;
+}
+.game-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.game-details {
+    flex: 1;
+}
+
+.game-info {
+    margin-bottom: 5px;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 5px;
+}
